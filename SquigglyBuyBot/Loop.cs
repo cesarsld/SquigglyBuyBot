@@ -16,8 +16,14 @@ namespace SquigglyBuyBot
                 Console.WriteLine($"Time before next update :  {(lastAuctionTime - unixTime)} seconds");
                 if (unixTime - lastAuctionTime > 0)
                 {
-                    await Web3Handler.GetInAuctionSquiggly();
-                    await Task.Delay(60000 * 15);
+                    try
+                    {
+                        await Web3Handler.GetInAuctionSquiggly();
+                        await Task.Delay(60000 * 15);
+                    }
+                    catch (Exception e) {
+                        Console.WriteLine(e.Message);
+                    }
                 }
                 await Task.Delay(60000 * 5);
             }
