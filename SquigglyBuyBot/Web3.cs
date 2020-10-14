@@ -32,11 +32,11 @@ namespace SquigglyBuyBot
             return ((int)json[method]) / 10;
         }
 
-        public static async Task<string> GetInAuctionSquiggly(int price = 7)
+        public static async Task<string> GetInAuctionSquiggly(int price = 0)
         {
             var account = new Account(PrivateKey);
             var web3 = new Web3(account, "https://mainnet.infura.io/v3/941d6f5ccab944728642af2ab67aea3a");
-            var contract = "0x440685630abe67cadc9eca5b03ad96f450791970";
+            var contract = "0x15be1f472b0fab90f532ee4d51c3e2bcdb24d37b";
             var con = web3.Eth.GetContractHandler(contract);
             var f = con.GetFunction<EndAndSecure>();
             var functionParams = new EndAndSecure();
