@@ -8,6 +8,7 @@ namespace SquigglyBuyBot
     {
         public static async Task UpdateServiceCheckLoop()
         {
+            int safetyCheck = 0;
             while (true)
             {
                 int unixTime = Convert.ToInt32(((DateTimeOffset)(DateTime.UtcNow)).ToUnixTimeSeconds());
@@ -22,7 +23,10 @@ namespace SquigglyBuyBot
                         await Task.Delay(60000 * 15);
                     }
                     catch (Exception e) {
+                        safetyCheck++;
                         Console.WriteLine(e.Message);
+                        if (safetyCheck == 5)
+                            return;
                     }
                 }
                 await Task.Delay(60000 * 5);
