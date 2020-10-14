@@ -15,7 +15,10 @@ namespace SquigglyBuyBot
                 int lastAuctionTime = await Web3Handler.GeteTimeOfLastStart();
                 Console.WriteLine($"Time before next update :  {(lastAuctionTime - unixTime)} seconds");
                 if (unixTime - lastAuctionTime > 0)
+                {
                     await Web3Handler.GetInAuctionSquiggly();
+                    await Task.Delay(60000 * 15);
+                }
                 await Task.Delay(60000 * 5);
             }
         }
