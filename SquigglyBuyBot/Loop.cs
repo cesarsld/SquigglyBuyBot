@@ -22,7 +22,7 @@ namespace SquigglyBuyBot
                         try
                         {
                             await Web3Handler.GetInAuctionSquiggly();
-                            await Task.Delay(60000 * 15);
+                            return;
                         }
                         catch (Exception e)
                         {
